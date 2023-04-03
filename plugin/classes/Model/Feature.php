@@ -17,7 +17,7 @@ class Feature {
 		$this->postTypes = [];
 	}
 
-	public static function build(string $postMetaKey, string $label, bool $defaultValue = true) {
+	public static function build(string $postMetaKey, string $label, bool $defaultValue) {
 		return new self($postMetaKey, $label, $defaultValue);
 	}
 

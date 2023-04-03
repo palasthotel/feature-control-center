@@ -26,7 +26,13 @@ class Gutenberg extends Component {
 
 	public function enqueue(){
 		wp_enqueue_script(Plugin::HANDLE_GUTENBERG_SCRIPTS);
-		// TODO: localize with post type features
+		wp_localize_script(
+			Plugin::HANDLE_GUTENBERG_SCRIPTS,
+			"FeatureControlCenter",
+			[
+				"features" => $this->plugin->features->controlCenter->getFeatures(),
+			]
+		);
 		wp_enqueue_style(Plugin::HANDLE_GUTENBERG_STYLES);
 	}
 }

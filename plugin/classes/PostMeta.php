@@ -30,7 +30,7 @@ class PostMeta extends Component {
 						"show_in_rest" => true,
 						"single" => true,
 						"type"   => "boolean",
-						"defaultValue" => $feature->defaultValue,
+						"default" => $feature->defaultValue,
 					]
 				);
 			}

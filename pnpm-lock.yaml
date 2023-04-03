@@ -1,18 +1,11 @@
 lockfileVersion: 5.4
 
 specifiers:
-  '@types/wordpress__components': ^23.0.1
   '@types/wordpress__edit-post': ^7.0.1
-  '@types/wordpress__element': ^2.14.1
-  '@wordpress/block-editor': ^11.4.0
-  '@wordpress/blocks': ^12.4.0
   '@wordpress/components': ^23.4.0
+  '@wordpress/core-data': ^6.7.0
   '@wordpress/data': ^8.4.0
-  '@wordpress/dom-ready': ^3.27.0
   '@wordpress/edit-post': ^7.4.0
-  '@wordpress/editor': ^13.4.0
-  '@wordpress/element': ^5.4.0
-  '@wordpress/i18n': ^4.27.0
   '@wordpress/plugins': ^5.4.0
   '@wordpress/scripts': ^25.4.0
   react: ^18.2.0
@@ -20,18 +13,11 @@ specifiers:
   typescript: ^5.0.3
 
 devDependencies:
-  '@types/wordpress__components': 23.0.1_biqbaboplfbrettd7655fr4n2y
   '@types/wordpress__edit-post': 7.0.1_biqbaboplfbrettd7655fr4n2y
-  '@types/wordpress__element': 2.14.1
-  '@wordpress/block-editor': 11.7.0_biqbaboplfbrettd7655fr4n2y
-  '@wordpress/blocks': 12.7.0_react@18.2.0
   '@wordpress/components': 23.7.0_biqbaboplfbrettd7655fr4n2y
+  '@wordpress/core-data': 6.7.0_react@18.2.0
   '@wordpress/data': 8.6.0_react@18.2.0
-  '@wordpress/dom-ready': 3.30.0
   '@wordpress/edit-post': 7.7.0_biqbaboplfbrettd7655fr4n2y
-  '@wordpress/editor': 13.7.0_biqbaboplfbrettd7655fr4n2y
-  '@wordpress/element': 5.7.0
-  '@wordpress/i18n': 4.30.0
   '@wordpress/plugins': 5.7.0_react@18.2.0
   '@wordpress/scripts': 25.5.1_uhtpkmw4islv4eik2krbyemjmy
   react: 18.2.0
@@ -1889,7 +1875,7 @@ packages:
       '@motionone/types': 10.15.1
       '@motionone/utils': 10.15.1
       hey-listen: 1.0.8
-      tslib: 2.4.0
+      tslib: 2.5.0
     dev: true
 
   /@motionone/easing/10.15.1:
@@ -2553,13 +2539,6 @@ packages:
     transitivePeerDependencies:
       - react
       - react-dom
-    dev: true
-
-  /@types/wordpress__element/2.14.1:
-    resolution: {integrity: sha512-qMp7A1r4Fdnm36FgSIQpwZ39CY6DDEfb2P4TfaLHoaSeZcPBdzs4hdhmIRrThX/W9AqOQYmGHyZ8RMzjg88KEg==}
-    deprecated: This is a stub types definition. wordpress__element provides its own type definitions, so you do not need this installed.
-    dependencies:
-      '@wordpress/element': 5.7.0
     dev: true
 
   /@types/wordpress__notices/3.27.0_react@18.2.0:
