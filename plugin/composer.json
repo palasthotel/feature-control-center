@@ -1,0 +1,9 @@
+{
+  "name": "palasthotel/feature-control-center",
+  "description": "WordPress plugin",
+  "autoload": {
+    "psr-4": {
+      "Palasthotel\\WordPress\\FeatureControlCenter\\": "classes"
+    }
+  }
+}
