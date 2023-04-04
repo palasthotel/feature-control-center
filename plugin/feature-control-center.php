@@ -15,12 +15,9 @@ namespace Palasthotel\WordPress\FeatureControlCenter;
  *
  */
 
-require_once __DIR__."/vendor/autoload.php";
+require_once __DIR__ . "/vendor/autoload.php";
 
 
-/**
- * @property Features $features
- */
 class Plugin extends Components\Plugin {
 
 	const DOMAIN = "fcc";
@@ -29,16 +26,29 @@ class Plugin extends Components\Plugin {
 	const HANDLE_GUTENBERG_STYLES = "fcc_gutenberg_styles";
 
 	const ACTION_ADD_FEATURES = "feature_control_center_add_features";
+	const FILTER_POST_REST_FIELD = "feature_control_post_rest_field";
+
+	var Configuration $config;
+	var Features $features;
 
 	function onCreate() {
 
-		$this->features = new Features($this);
+		$this->config = new Configuration($this);
+		$this->features = new Features( $this );
 
-		new PostMeta($this);
-		new Gutenberg($this);
+		new Gutenberg( $this );
+
+		if ( WP_DEBUG ) {
+			$this->features->repo->database->createTables();
+		}
+	}
+
+	public function onSiteActivation() {
+		parent::onSiteActivation();
+		$this->features->repo->database->createTables();
 	}
 }
 
 Plugin::instance();
 
-require_once __DIR__."/public-functions.php";
+require_once __DIR__ . "/public-functions.php";

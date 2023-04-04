@@ -31,6 +31,7 @@ class Gutenberg extends Component {
 			"FeatureControlCenter",
 			[
 				"features" => $this->plugin->features->getByPostType(get_post_type()),
+				"post_rest_field" => $this->plugin->config->getPostRestField(),
 			]
 		);
 		wp_enqueue_style(Plugin::HANDLE_GUTENBERG_STYLES);

@@ -1,24 +1,27 @@
 import {PluginDocumentSettingPanel} from '@wordpress/edit-post';
 import {CheckboxControl} from "@wordpress/components";
-import {useEntityProp} from '@wordpress/core-data'
-import {useSelect} from "@wordpress/data";
-import {getFeatures} from "../lib/window";
+import {useSelect, useDispatch} from "@wordpress/data";
+import {getFeatures, getPostRestField} from "../lib/window";
 import {Feature} from "../_types/feature";
 
 type FeatureControlProps = {
     feature: Feature
-    postType: string
 }
 
 const FeatureControl = (
     {
         feature,
-        postType,
     }: FeatureControlProps
 )=>{
 
-    const [ meta, setMeta ] = useEntityProp( 'postType', postType, 'meta' );
-    const checked = meta[feature.key] ?? feature.defaultValue;
+    const restField = getPostRestField();
+    const features =  useSelect(
+        ( select ) => select( 'core/editor' ).getEditedPostAttribute(restField),
+        []
+    );
+
+    const {editPost} = useDispatch('core/editor');
+    const checked = typeof features[feature.key] == "boolean" ? features[feature.key] : feature.defaultValue;
 
     return (
         <CheckboxControl
@@ -26,9 +29,11 @@ const FeatureControl = (
             label={feature.label}
             checked={checked}
             onChange={(isChecked)=> {
-                setMeta({
-                    ...meta,
-                    [feature.key]: isChecked
+                editPost({
+                    [restField]: {
+                        ...features,
+                        [feature.key]: isChecked,
+                    }
                 })
             }}
         />
@@ -39,10 +44,6 @@ const FeatureControl = (
 export default function FeatureControlCenterPanel(){
 
     const features = getFeatures();
-    const postType = useSelect(
-        ( select ) => select( 'core/editor' ).getCurrentPostType(),
-        []
-    );
 
     return (
         <PluginDocumentSettingPanel
@@ -53,7 +54,6 @@ export default function FeatureControlCenterPanel(){
                     <FeatureControl
                         key={feature.key}
                         feature={feature}
-                        postType={postType}
                     />
                 )
             })}
