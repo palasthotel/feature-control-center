@@ -30,7 +30,7 @@ class Gutenberg extends Component {
 			Plugin::HANDLE_GUTENBERG_SCRIPTS,
 			"FeatureControlCenter",
 			[
-				"features" => $this->plugin->features->controlCenter->getFeatures(),
+				"features" => $this->plugin->features->getByPostType(get_post_type()),
 			]
 		);
 		wp_enqueue_style(Plugin::HANDLE_GUTENBERG_STYLES);
