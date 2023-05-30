@@ -3,9 +3,9 @@ Contributors: palasthotel, edwardbock
 Donate link: http://palasthotel.de/
 Tags: gutenberg, developer, utils
 Requires at least: 5.0
-Tested up to: 6.1.1
+Tested up to: 6.2.1
 Requires PHP: 8.0
-Stable tag: 0.1.0
+Stable tag: 0.1.1
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl
 
@@ -29,6 +29,9 @@ Add custom boolean feature meta values to posts.
 == Screenshots ==
 
 == Changelog ==
+
+= 0.1.1 =
+* Only show feature control panel if there are features to control
 
 = 0.1.0 =
 * First release
