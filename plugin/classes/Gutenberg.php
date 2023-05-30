@@ -25,6 +25,9 @@ class Gutenberg extends Component {
 	}
 
 	public function enqueue(){
+		$postType = get_post_type();
+		if(count($this->plugin->features->getByPostType($postType)) <= 0 ) return;
+
 		wp_enqueue_script(Plugin::HANDLE_GUTENBERG_SCRIPTS);
 		wp_localize_script(
 			Plugin::HANDLE_GUTENBERG_SCRIPTS,

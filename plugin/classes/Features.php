@@ -27,34 +27,37 @@ class Features extends Component {
 
 	public function init(){
 		$postTypes = get_post_types();
-		register_rest_field(
-			$postTypes,
-			$this->plugin->config->getPostRestField(),
-			[
-				'get_callback' => function($post){
-					$features = $this->getByPostType($post["type"]);
-					$result = [];
-					foreach ($features as $feature){
-						$value = $this->repo->getPostFeature($post["id"], $feature->key);
-						if($value instanceof FeatureValue){
-							$result[$value->key] = $value->value;
+		foreach ($postTypes as $post_type){
+			$features = $this->plugin->features->getByPostType($post_type);
+			if(count($features)<= 0) continue;
+			register_rest_field(
+				$postTypes,
+				$this->plugin->config->getPostRestField(),
+				[
+					'get_callback' => function($post){
+						$features = $this->getByPostType($post["type"]);
+						$result = [];
+						foreach ($features as $feature){
+							$value = $this->repo->getPostFeature($post["id"], $feature->key);
+							if($value instanceof FeatureValue){
+								$result[$value->key] = $value->value;
+							}
 						}
-					}
-					return $result;
-				},
-				'update_callback' => function($value, $post){
-					if(!is_array($value)) return;
-					foreach ($value as $key => $val){
-						$this->repo->setPostFeature($post->ID, new FeatureValue(sanitize_text_field($key), boolval($val)));
-					}
-				},
-				'schema' => [
-					'description' => 'List of features for this content',
-					'type' => 'object',
+						return $result;
+					},
+					'update_callback' => function($value, $post){
+						if(!is_array($value)) return;
+						foreach ($value as $key => $val){
+							$this->repo->setPostFeature($post->ID, new FeatureValue(sanitize_text_field($key), boolval($val)));
+						}
+					},
+					'schema' => [
+						'description' => 'List of features for this content',
+						'type' => 'object',
+					]
 				]
-			]
-
-		);
+			);
+		}
 	}
 
 	/**
@@ -71,11 +74,11 @@ class Features extends Component {
 	}
 
 	/**
-	 * @param string $postType
+	 * @param string|null $postType
 	 *
 	 * @return Feature[]
 	 */
-	public function getByPostType(string $postType) {
+	public function getByPostType( ?string $postType): array {
 		return array_values(
 			array_filter($this->plugin->features->controlCenter->getFeatures(), function($item) use ( $postType ) {
 				return empty($item->postTypes) || in_array($postType, $item->postTypes);

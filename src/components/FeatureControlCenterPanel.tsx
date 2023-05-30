@@ -16,7 +16,7 @@ const FeatureControl = (
 
     const restField = getPostRestField();
     const features =  useSelect(
-        ( select ) => select( 'core/editor' ).getEditedPostAttribute(restField),
+        ( select ) => select( 'core/editor' ).getEditedPostAttribute(restField) ?? [],
         []
     );
 
