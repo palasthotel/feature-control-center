@@ -8,12 +8,12 @@ use Palasthotel\WordPress\FeatureControlCenter\Plugin;
 /**
  * Class Component
  *
- * @property Plugin plugin
- *
  * @package Palasthotel\WordPress
  * @version 0.1.1
  */
 abstract class Component {
+	protected Plugin $plugin;
+
 	/**
 	 * _Component constructor.
 	 *

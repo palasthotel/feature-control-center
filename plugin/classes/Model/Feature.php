@@ -3,12 +3,16 @@
 namespace Palasthotel\WordPress\FeatureControlCenter\Model;
 
 /**
- * @property string $key
- * @property string $label
- * @property bool $defaultValue
- * @property string[] $postTypes
  */
 class Feature {
+
+	public string $key;
+	public string $label;
+	public bool $defaultValue;
+	/**
+	 * @var string[]
+	 */
+	public array $postTypes;
 
 	public function __construct(string $postMetaKey, string $label, bool $defaultValue) {
 		$this->key = $postMetaKey;

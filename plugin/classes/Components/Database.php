@@ -5,10 +5,11 @@ namespace Palasthotel\WordPress\FeatureControlCenter\Components;
 use wpdb;
 
 /**
- * @property wpdb wpdb
  * @version 0.1.1
  */
 abstract class Database {
+
+	protected wpdb $wpdb;
 
 	public function __construct() {
 		global $wpdb;

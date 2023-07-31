@@ -16,8 +16,6 @@ namespace Palasthotel\WordPress\FeatureControlCenter;
  */
 
 require_once __DIR__ . "/vendor/autoload.php";
-
-
 class Plugin extends Components\Plugin {
 
 	const DOMAIN = "fcc";
