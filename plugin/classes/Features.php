@@ -17,7 +17,7 @@ class Features extends Component {
 		parent::onCreate();
 		$this->repo = new FeatureRepository();
 		$this->controlCenter = new ControlCenter();
-		add_action('plugins_loaded', [$this, 'load_features']);
+		add_action('init', [$this, 'load_features'], 1);
 		add_action('init', [$this, 'init']);
 	}
 
